@@ -1,0 +1,24 @@
+# This file updates the security group for BIG-IP VE
+# validated  eduardoc/ansible-azure-labs:azure
+#
+- name: Deploy BIG-IP 1-NIC on Azure
+  hosts: localhost
+  vars_files:
+    - ./config.yml
+
+  tasks:
+    - name: Update existing security group for BIG-IP VE
+      azure_rm_securitygroup:
+        tenant: "{{ TENANT_ID }}"
+        client_id: "{{ CLIENT_ID}}"
+        secret: "{{ SERVICE_PRINCIPAL_SECRET }}"
+        subscription_id: "{{ SUBSCRIPTION_ID }}"
+        resource_group: "{{ RESOURCE_GROUP }}"
+        name: "{{ BIGIP_NAME }}-{{ STUDENT_ID }}-mgmt-nsg"
+        rules:
+            - name: Allow_TCP_80
+              protocol: Tcp
+              destination_port_range: 80
+              access: Allow
+              priority: 99
+              direction: Inbound
