@@ -45,7 +45,7 @@
         subscription_id: "{{ SUBSCRIPTION_ID }}"
         location: "{{ DEFAULT_LOCATION }}"
         resource_group: "{{ RESOURCE_GROUP }}"
-        name: "{{ STUDENT_ID }}stacc"
+        name: "sa{{ STUDENT_ID }}20190710"
         account_type: Standard_LRS
 
     - name: Create {{ NODE_NAME }}-{{ STUDENT_ID }} internal NIC in Resource Group {{ RESOURCE_GROUP }}
@@ -101,7 +101,7 @@
         resource_group: "{{ RESOURCE_GROUP }}"
         name: "{{ STUDENT_ID }}-backend-api"
         vm_size: Standard_B2s
-        storage_account: "{{ STUDENT_ID }}stacc"
+        storage_account: "sa{{ STUDENT_ID }}20190710"
         storage_container: "{{ NODE_NAME }}{{ STUDENT_ID }}"
         storage_blob: "{{ NODE_NAME }}{{ STUDENT_ID }}.vhd"
         admin_username: "{{ NODE_USER }}"
