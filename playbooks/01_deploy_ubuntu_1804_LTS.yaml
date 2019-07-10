@@ -1,5 +1,5 @@
 # This file establishes the necessary resources on Azure to create a Demo Webserver using Ubuntu
-# validated  eduardoc/ansible-azure-labs
+# validated  eduardoc/ansible-azure-labs:azure
 #
 - name: Create Ubuntu resources
   hosts: localhost
@@ -99,7 +99,7 @@
         subscription_id: "{{ SUBSCRIPTION_ID }}"
         location: "{{ DEFAULT_LOCATION }}"
         resource_group: "{{ RESOURCE_GROUP }}"
-        name: "{{ STUDENT_ID }}-backend-api"
+        name: "backend-api-{{ STUDENT_ID }}"
         vm_size: Standard_B2s
         storage_account: "sa{{ STUDENT_ID }}20190710"
         storage_container: "{{ NODE_NAME }}{{ STUDENT_ID }}"
@@ -123,7 +123,7 @@
         location: "{{ DEFAULT_LOCATION }}"
         resource_group: "{{ RESOURCE_GROUP }}"
         name: server_onboarding
-        virtual_machine_name: "{{ STUDENT_ID }}-backend-api"
+        virtual_machine_name: "backend-api-{{ STUDENT_ID }}"
         publisher: Microsoft.Azure.Extensions
         virtual_machine_extension_type: CustomScript
         type_handler_version: 2.0

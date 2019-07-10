@@ -1,5 +1,5 @@
 # This file establishes the necessary resources on Azure to deploy a BIG-IP VE
-# validated  eduardoc/ansible-azure-labs
+# validated  eduardoc/ansible-azure-labs:azure
 #
 - name: Deploy BIG-IP 1-NIC on Azure
   hosts: localhost
