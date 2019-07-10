@@ -16,9 +16,10 @@
         resource_group: "{{ RESOURCE_GROUP }}"
         name: "{{ BIGIP_NAME }}-{{ STUDENT_ID }}-mgmt-nsg"
         rules:
-            - name: Allow_TCP_80
+            - name: tcp_80_allow
               protocol: Tcp
               destination_port_range: 80
+              source_address_prefix: "{{ ALLOWED_SRC_ADDRESS }}"
               access: Allow
-              priority: 99
+              priority: 105
               direction: Inbound
