@@ -1,4 +1,5 @@
 # This file establishes the necessary resources on Azure to create a Demo Webserver using Ubuntu
+# validated  eduardoc/ansible-azure-labs
 #
 - name: Create Ubuntu resources
   hosts: localhost
@@ -44,10 +45,10 @@
         subscription_id: "{{ SUBSCRIPTION_ID }}"
         location: "{{ DEFAULT_LOCATION }}"
         resource_group: "{{ RESOURCE_GROUP }}"
-        name: "{{ UNIQUE_ID }}stacc"
+        name: "{{ STUDENT_ID }}stacc"
         account_type: Standard_LRS
 
-    - name: Create {{ NODE_NAME }}-{{ UNIQUE_ID }} internal NIC in Resource Group {{ RESOURCE_GROUP }}
+    - name: Create {{ NODE_NAME }}-{{ STUDENT_ID }} internal NIC in Resource Group {{ RESOURCE_GROUP }}
       azure_rm_networkinterface:
         tenant: "{{ TENANT_ID }}"
         client_id: "{{ CLIENT_ID}}"
@@ -55,24 +56,24 @@
         subscription_id: "{{ SUBSCRIPTION_ID }}"
         location: "{{ DEFAULT_LOCATION }}"
         resource_group: "{{ RESOURCE_GROUP }}"
-        name: "{{ NODE_NAME }}-{{ UNIQUE_ID }}-int-nic0"
+        name: "{{ NODE_NAME }}-{{ STUDENT_ID }}-int-nic0"
         virtual_network: "{{ VNET1 }}"
         subnet: "{{ VNET_SUBNET1 }}"
         ip_configurations:
           - name: ipconfig1
             private_ip_allocation_method: Static
             private_ip_address: "{{ NODE_ADDRESS }}"
-            public_ip_address_name: "{{ NODE_NAME }}-{{ UNIQUE_ID }}-int-pip0"
+            public_ip_address_name: "{{ NODE_NAME }}-{{ STUDENT_ID }}-int-pip0"
       register: "api-server-int-nic-private"
 
-    - name: Edit {{ NODE_NAME }}-{{ UNIQUE_ID }} Security Group in Resource Group {{ RESOURCE_GROUP }} (Allow DATA and Access)
+    - name: Edit {{ NODE_NAME }}-{{ STUDENT_ID }} Security Group in Resource Group {{ RESOURCE_GROUP }} (Allow DATA and Access)
       azure_rm_securitygroup:
           tenant: "{{ TENANT_ID }}"
           client_id: "{{ CLIENT_ID}}"
           secret: "{{ SERVICE_PRINCIPAL_SECRET }}"
           subscription_id: "{{ SUBSCRIPTION_ID }}"
           resource_group: "{{ RESOURCE_GROUP }}"
-          name: "{{ NODE_NAME }}-{{ UNIQUE_ID }}-int-nic0"
+          name: "{{ NODE_NAME }}-{{ STUDENT_ID }}-int-nic0"
           purge_rules: yes
           rules:
               - name: 'Allow_TCP_3000'
@@ -98,14 +99,14 @@
         subscription_id: "{{ SUBSCRIPTION_ID }}"
         location: "{{ DEFAULT_LOCATION }}"
         resource_group: "{{ RESOURCE_GROUP }}"
-        name: "{{ UNIQUE_ID }}-backend-api"
+        name: "{{ STUDENT_ID }}-backend-api"
         vm_size: Standard_B2s
-        storage_account: "{{ UNIQUE_ID }}stacc"
-        storage_container: "{{ NODE_NAME }}{{ UNIQUE_ID }}"
-        storage_blob: "{{ NODE_NAME }}{{ UNIQUE_ID }}.vhd"
+        storage_account: "{{ STUDENT_ID }}stacc"
+        storage_container: "{{ NODE_NAME }}{{ STUDENT_ID }}"
+        storage_blob: "{{ NODE_NAME }}{{ STUDENT_ID }}.vhd"
         admin_username: "{{ NODE_USER }}"
         admin_password: "{{ NODE_PASSWORD }}"
-        network_interfaces: "{{ NODE_NAME }}-{{ UNIQUE_ID }}-int-nic0"
+        network_interfaces: "{{ NODE_NAME }}-{{ STUDENT_ID }}-int-nic0"
         append_tags: True
         tags:
           OperatingSystem: "Ubuntu"
@@ -122,9 +123,9 @@
         location: "{{ DEFAULT_LOCATION }}"
         resource_group: "{{ RESOURCE_GROUP }}"
         name: server_onboarding
-        virtual_machine_name: "{{ UNIQUE_ID }}-backend-api"
+        virtual_machine_name: "{{ STUDENT_ID }}-backend-api"
         publisher: Microsoft.Azure.Extensions
         virtual_machine_extension_type: CustomScript
         type_handler_version: 2.0
-        settings: '{"commandToExecute": "screen -q ; sudo apt-get update ; sudo apt-get install -y docker docker-compose ; git clone https://github.com/ehc-io/bookscatalog.git ; cd bookscatalog/ ; sudo docker-compose up&"}'
+        settings: '{"commandToExecute": "sudo apt-get update ; sudo apt-get install -y docker docker-compose ; git clone https://github.com/ehc-io/bookscatalog.git ; cd bookscatalog/ ; sudo docker-compose up&"}'
         auto_upgrade_minor_version: true

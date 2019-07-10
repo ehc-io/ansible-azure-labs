@@ -1,0 +1,65 @@
+# Playbook: deploy_vs.yaml
+# validated  eduardoc/ansible-azure-labs
+#
+#
+- name: Virtual Server configuration
+  connection: local
+  hosts: azure-resource-group
+  vars_files:
+    - ./config.yml
+
+  vars:
+    provider:
+      server: "{{ ansible_host }}"
+      user: "{{ ADMINUSERNAME }}"
+      password: "{{ ADMINPASSWORD }}"
+      server_port: 8443
+      validate_certs: "false"
+
+  tasks:
+      - name: Add node
+        bigip_node:
+          provider: "{{ provider }}"
+          state: present
+          partition: Common
+          host: 10.1.20.50
+          name: backend-api
+
+      - name: Create pool
+        bigip_pool:
+          provider: "{{ provider }}"
+          state: present
+          name: backend-api-pool
+          partition: Common
+          lb_method: least-connections-member
+          monitor_type: single
+          monitors:
+            - tcp
+          slow_ramp_time: 120
+
+      - name: Add nodes to pool
+        bigip_pool_member:
+            provider: "{{ provider }}"
+            description: App services mesh integration cloud workload
+            pool: backend-api-pool
+            port: 3000
+            partition: Common
+            host: "{{ item.host }}"
+            name: "{{ item.name }}"
+        loop:
+          - host: 10.1.20.50
+            name: backend-api
+
+      - name: Add virtual server
+        bigip_virtual_server:
+          provider: "{{ provider }}"
+          state: present
+          partition: Common
+          name: vs-bookstore-api
+          destination: 10.1.20.245
+          port: 80
+          pool: backend-api-pool
+          snat: Automap
+          description: API Protection for Azure Lab
+          profiles:
+            - http

@@ -1,0 +1,484 @@
+swagger: '2.0'
+info:
+  version: 1.0.0
+  title: bookscatalog
+basePath: /api
+paths:
+  /full_book_catalogs:
+    post:
+      tags:
+        - full_book_catalog
+      summary: Create a new instance of the model and persist it into the data source.
+      operationId: full_book_catalog.create
+      parameters:
+        - name: data
+          in: body
+          description: Model instance data
+          required: false
+          schema:
+            description: Model instance data
+            $ref: '#/definitions/full_book_catalog'
+      responses:
+        '200':
+          description: Request was successful
+          schema:
+            $ref: '#/definitions/full_book_catalog'
+      deprecated: false
+    patch:
+      tags:
+        - full_book_catalog
+      summary: >-
+        Patch an existing model instance or insert a new one into the data
+        source.
+      operationId: full_book_catalog.patchOrCreate
+      parameters:
+        - name: data
+          in: body
+          description: Model instance data
+          required: false
+          schema:
+            description: Model instance data
+            $ref: '#/definitions/full_book_catalog'
+      responses:
+        '200':
+          description: Request was successful
+          schema:
+            $ref: '#/definitions/full_book_catalog'
+      deprecated: false
+    put:
+      tags:
+        - full_book_catalog
+      summary: >-
+        Replace an existing model instance or insert a new one into the data
+        source.
+      operationId: full_book_catalog.replaceOrCreate__put_full_book_catalogs
+      parameters:
+        - name: data
+          in: body
+          description: Model instance data
+          required: false
+          schema:
+            description: Model instance data
+            $ref: '#/definitions/full_book_catalog'
+      responses:
+        '200':
+          description: Request was successful
+          schema:
+            $ref: '#/definitions/full_book_catalog'
+      deprecated: false
+    get:
+      tags:
+        - full_book_catalog
+      summary: Find all instances of the model matched by filter from the data source.
+      operationId: full_book_catalog.find
+      parameters:
+        - name: filter
+          in: query
+          description: >-
+            Filter defining fields, where, include, order, offset, and limit -
+            must be a JSON-encoded string (`{"where":{"something":"value"}}`). 
+            See
+            https://loopback.io/doc/en/lb3/Querying-data.html#using-stringified-json-in-rest-queries
+            for more details.
+          required: false
+          type: string
+          format: JSON
+      responses:
+        '200':
+          description: Request was successful
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/full_book_catalog'
+      deprecated: false
+  /full_book_catalogs/replaceOrCreate:
+    post:
+      tags:
+        - full_book_catalog
+      summary: >-
+        Replace an existing model instance or insert a new one into the data
+        source.
+      operationId: >-
+        full_book_catalog.replaceOrCreate__post_full_book_catalogs_replaceOrCreate
+      parameters:
+        - name: data
+          in: body
+          description: Model instance data
+          required: false
+          schema:
+            description: Model instance data
+            $ref: '#/definitions/full_book_catalog'
+      responses:
+        '200':
+          description: Request was successful
+          schema:
+            $ref: '#/definitions/full_book_catalog'
+      deprecated: false
+  /full_book_catalogs/upsertWithWhere:
+    post:
+      tags:
+        - full_book_catalog
+      summary: >-
+        Update an existing model instance or insert a new one into the data
+        source based on the where criteria.
+      operationId: full_book_catalog.upsertWithWhere
+      parameters:
+        - name: where
+          in: query
+          description: Criteria to match model instances
+          required: false
+          type: string
+          format: JSON
+        - name: data
+          in: body
+          description: An object of model property name/value pairs
+          required: false
+          schema:
+            description: An object of model property name/value pairs
+            $ref: '#/definitions/full_book_catalog'
+      responses:
+        '200':
+          description: Request was successful
+          schema:
+            $ref: '#/definitions/full_book_catalog'
+      deprecated: false
+  '/full_book_catalogs/{id}/exists':
+    get:
+      tags:
+        - full_book_catalog
+      summary: Check whether a model instance exists in the data source.
+      operationId: 'full_book_catalog.exists__get_full_book_catalogs_{id}_exists'
+      parameters:
+        - name: id
+          in: path
+          description: Model id
+          required: true
+          type: string
+          format: JSON
+      responses:
+        '200':
+          description: Request was successful
+          schema:
+            type: object
+            properties:
+              exists:
+                type: boolean
+      deprecated: false
+  '/full_book_catalogs/{id}':
+    head:
+      tags:
+        - full_book_catalog
+      summary: Check whether a model instance exists in the data source.
+      operationId: 'full_book_catalog.exists__head_full_book_catalogs_{id}'
+      parameters:
+        - name: id
+          in: path
+          description: Model id
+          required: true
+          type: string
+          format: JSON
+      responses:
+        '200':
+          description: Request was successful
+          schema:
+            type: object
+            properties:
+              exists:
+                type: boolean
+      deprecated: false
+    get:
+      tags:
+        - full_book_catalog
+      summary: 'Find a model instance by {{id}} from the data source.'
+      operationId: full_book_catalog.findById
+      parameters:
+        - name: id
+          in: path
+          description: Model id
+          required: true
+          type: string
+          format: JSON
+        - name: filter
+          in: query
+          description: >-
+            Filter defining fields and include - must be a JSON-encoded string
+            ({"something":"value"})
+          required: false
+          type: string
+          format: JSON
+      responses:
+        '200':
+          description: Request was successful
+          schema:
+            $ref: '#/definitions/full_book_catalog'
+      deprecated: false
+    put:
+      tags:
+        - full_book_catalog
+      summary: >-
+        Replace attributes for a model instance and persist it into the data
+        source.
+      operationId: 'full_book_catalog.replaceById__put_full_book_catalogs_{id}'
+      parameters:
+        - name: id
+          in: path
+          description: Model id
+          required: true
+          type: string
+          format: JSON
+        - name: data
+          in: body
+          description: Model instance data
+          required: false
+          schema:
+            description: Model instance data
+            $ref: '#/definitions/full_book_catalog'
+      responses:
+        '200':
+          description: Request was successful
+          schema:
+            $ref: '#/definitions/full_book_catalog'
+      deprecated: false
+    delete:
+      tags:
+        - full_book_catalog
+      summary: 'Delete a model instance by {{id}} from the data source.'
+      operationId: full_book_catalog.deleteById
+      parameters:
+        - name: id
+          in: path
+          description: Model id
+          required: true
+          type: string
+          format: JSON
+      responses:
+        '200':
+          description: Request was successful
+          schema:
+            type: object
+      deprecated: false
+    patch:
+      tags:
+        - full_book_catalog
+      summary: >-
+        Patch attributes for a model instance and persist it into the data
+        source.
+      operationId: full_book_catalog.prototype.patchAttributes
+      parameters:
+        - name: id
+          in: path
+          description: full_book_catalog id
+          required: true
+          type: string
+          format: JSON
+        - name: data
+          in: body
+          description: An object of model property name/value pairs
+          required: false
+          schema:
+            description: An object of model property name/value pairs
+            $ref: '#/definitions/full_book_catalog'
+      responses:
+        '200':
+          description: Request was successful
+          schema:
+            $ref: '#/definitions/full_book_catalog'
+      deprecated: false
+  '/full_book_catalogs/{id}/replace':
+    post:
+      tags:
+        - full_book_catalog
+      summary: >-
+        Replace attributes for a model instance and persist it into the data
+        source.
+      operationId: 'full_book_catalog.replaceById__post_full_book_catalogs_{id}_replace'
+      parameters:
+        - name: id
+          in: path
+          description: Model id
+          required: true
+          type: string
+          format: JSON
+        - name: data
+          in: body
+          description: Model instance data
+          required: false
+          schema:
+            description: Model instance data
+            $ref: '#/definitions/full_book_catalog'
+      responses:
+        '200':
+          description: Request was successful
+          schema:
+            $ref: '#/definitions/full_book_catalog'
+      deprecated: false
+  /full_book_catalogs/findOne:
+    get:
+      tags:
+        - full_book_catalog
+      summary: Find first instance of the model matched by filter from the data source.
+      operationId: full_book_catalog.findOne
+      parameters:
+        - name: filter
+          in: query
+          description: >-
+            Filter defining fields, where, include, order, offset, and limit -
+            must be a JSON-encoded string (`{"where":{"something":"value"}}`). 
+            See
+            https://loopback.io/doc/en/lb3/Querying-data.html#using-stringified-json-in-rest-queries
+            for more details.
+          required: false
+          type: string
+          format: JSON
+      responses:
+        '200':
+          description: Request was successful
+          schema:
+            $ref: '#/definitions/full_book_catalog'
+      deprecated: false
+  /full_book_catalogs/update:
+    post:
+      tags:
+        - full_book_catalog
+      summary: 'Update instances of the model matched by {{where}} from the data source.'
+      operationId: full_book_catalog.updateAll
+      parameters:
+        - name: where
+          in: query
+          description: Criteria to match model instances
+          required: false
+          type: string
+          format: JSON
+        - name: data
+          in: body
+          description: An object of model property name/value pairs
+          required: false
+          schema:
+            description: An object of model property name/value pairs
+            $ref: '#/definitions/full_book_catalog'
+      responses:
+        '200':
+          description: Request was successful
+          schema:
+            description: Information related to the outcome of the operation
+            type: object
+            properties:
+              count:
+                description: The number of instances updated
+                type: number
+                format: double
+      deprecated: false
+  /full_book_catalogs/count:
+    get:
+      tags:
+        - full_book_catalog
+      summary: Count instances of the model matched by where from the data source.
+      operationId: full_book_catalog.count
+      parameters:
+        - name: where
+          in: query
+          description: Criteria to match model instances
+          required: false
+          type: string
+          format: JSON
+      responses:
+        '200':
+          description: Request was successful
+          schema:
+            type: object
+            properties:
+              count:
+                type: number
+                format: double
+      deprecated: false
+  /full_book_catalogs/change-stream:
+    post:
+      tags:
+        - full_book_catalog
+      summary: Create a change stream.
+      operationId: >-
+        full_book_catalog.createChangeStream__post_full_book_catalogs_change-stream
+      parameters:
+        - name: options
+          in: formData
+          required: false
+          type: string
+          format: JSON
+      responses:
+        '200':
+          description: Request was successful
+          schema:
+            type: file
+      deprecated: false
+    get:
+      tags:
+        - full_book_catalog
+      summary: Create a change stream.
+      operationId: >-
+        full_book_catalog.createChangeStream__get_full_book_catalogs_change-stream
+      parameters:
+        - name: options
+          in: query
+          required: false
+          type: string
+          format: JSON
+      responses:
+        '200':
+          description: Request was successful
+          schema:
+            type: file
+      deprecated: false
+tags:
+  - name: full_book_catalog
+consumes:
+  - application/json
+  - application/x-www-form-urlencoded
+  - application/xml
+  - text/xml
+produces:
+  - application/json
+  - application/xml
+  - text/xml
+  - application/javascript
+  - text/javascript
+definitions:
+  full_book_catalog:
+    properties:
+      title:
+        type: string
+      isbn:
+        type: number
+        format: double
+      pageCount:
+        type: number
+        format: double
+      publishedDate:
+        type: string
+        format: date-time
+      thumbnailUrl:
+        type: string
+      shortDescription:
+        type: string
+      longDescription:
+        type: string
+      status:
+        type: string
+      authors:
+        type: array
+        items:
+          type: string
+      categories:
+        type: array
+        items:
+          type: string
+      id:
+        $ref: '#/definitions/ObjectID'
+    required:
+      - title
+      - authors
+    additionalProperties: false
+  x-any:
+    properties: {}
+  ObjectID:
+    type: string
+    pattern: '^[a-fA-F\d]{24}$'
