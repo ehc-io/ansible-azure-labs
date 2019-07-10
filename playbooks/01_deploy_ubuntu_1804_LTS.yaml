@@ -7,7 +7,7 @@
     - ./config.yml
 
   tasks:
-    - name: Create a resource group
+    - name: Create a resource group "{{ RESOURCE_GROUP }}"
       azure_rm_resourcegroup:
         tenant: "{{ TENANT_ID }}"
         client_id: "{{ CLIENT_ID}}"
@@ -16,7 +16,7 @@
         name: "{{ RESOURCE_GROUP }}"
         location: "{{ DEFAULT_LOCATION }}"
 
-    - name: Create virtual network
+    - name: Create virtual network "{{ VNET1 }}"
       azure_rm_virtualnetwork:
         tenant: "{{ TENANT_ID }}"
         client_id: "{{ CLIENT_ID}}"
@@ -26,7 +26,7 @@
         name: "{{ VNET1 }}"
         address_prefixes: "10.1.0.0/16"
 
-    - name: Add subnet
+    - name: Add subnet "{{ VNET_SUBNET1 }}"
       azure_rm_subnet:
         tenant: "{{ TENANT_ID }}"
         client_id: "{{ CLIENT_ID}}"
@@ -118,7 +118,7 @@
           sku: 18.04-LTS
           version: latest
 
-    - name: Create VM Extension
+    - name: Run init script for docker and loopback.io installation
       azure_rm_virtualmachineextension:
         location: "{{ DEFAULT_LOCATION }}"
         resource_group: "{{ RESOURCE_GROUP }}"
