@@ -20,7 +20,7 @@
 					}
 				],
 				"url": {
-					"raw": "http://{{api-backend}}:3000/api/full_book_catalogs/1",
+					"raw": "http://{{api-backend}}:3000/api/full_book_catalogs/",
 					"protocol": "http",
 					"host": [
 						"{{api-backend}}"
@@ -29,7 +29,37 @@
 					"path": [
 						"api",
 						"full_book_catalogs",
-						"1"
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "API Bookstore  - COUNT",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://{{api-backend}}:3000/api/full_book_catalogs/count",
+					"protocol": "http",
+					"host": [
+						"{{api-backend}}"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"full_book_catalogs",
+						"count"
 					]
 				}
 			},
@@ -127,7 +157,7 @@
 					}
 				],
 				"url": {
-					"raw": "http://{{api-backend}}:3000/api/full_book_catalogs?filter={ \"where\": {\"$where\" : \"function(){ while(1);  const msg =  this.id;  print(this.title) ;  print(  ISODate() ) ; }\"  } }",
+					"raw": "http://{{api-backend}}:3000/api/full_book_catalogs?filter={ \"where\": {\"$where\" : \"function(){ const msg='Waiting 3 seconds...' ;  print(msg);  print(this.title) ; sleep(3000); }\"  } }",
 					"protocol": "http",
 					"host": [
 						"{{api-backend}}"
@@ -140,7 +170,7 @@
 					"query": [
 						{
 							"key": "filter",
-							"value": "{ \"where\": {\"$where\" : \"function(){ while(1);  const msg =  this.id;  print(this.title) ;  print(  ISODate() ) ; }\"  } }"
+							"value": "{ \"where\": {\"$where\" : \"function(){ const msg='Waiting 3 seconds...' ;  print(msg);  print(this.title) ; sleep(3000); }\"  } }"
 						}
 					]
 				}
@@ -155,7 +185,7 @@
 					"oauth2": [
 						{
 							"key": "accessToken",
-							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6IkN0ZlFDOExlLThOc0M3b0MyelFrWnBjcmZPYyIsImtpZCI6IkN0ZlFDOExlLThOc0M3b0MyelFrWnBjcmZPYyJ9.eyJhdWQiOiIwMDAwMDAwMi0wMDAwLTAwMDAtYzAwMC0wMDAwMDAwMDAwMDAiLCJpc3MiOiJodHRwczovL3N0cy53aW5kb3dzLm5ldC8zMGNjMzJhNC0yMDBiLTQyMmItYjc3OS0zOGU0OWJhOGRmNGUvIiwiaWF0IjoxNTU5NzY3MDExLCJuYmYiOjE1NTk3NjcwMTEsImV4cCI6MTU1OTc3MDkxMSwiYWNyIjoiMSIsImFpbyI6IkFVUUF1LzhMQUFBQUs4UWhJUWJFdnBmWGF3dUZQNGpTMW9Wa1hqVkZaVDI0OUhscSszZWVNemNZekFmUy9GOGo1SEwrLzBNclMwYU1RVlp5MjVEcC9peTFqQ2FFMkt4b053PT0iLCJhbHRzZWNpZCI6IjU6OjEwMDMwMDAwOEQwMTc4NjciLCJhbXIiOlsicHdkIl0sImFwcGlkIjoiNzU1ZThjY2EtNmMwNS00OGY3LTlmMDUtNDdhOTBkMmE1OWVhIiwiYXBwaWRhY3IiOiIxIiwiZW1haWwiOiJFLkNhc3NlYW5vQGY1LmNvbSIsImlkcCI6Imh0dHBzOi8vc3RzLndpbmRvd3MubmV0L2RkM2RmZDJmLTZhM2ItNDBkMS05YmUwLWJmODMyN2Q4MWM1MC8iLCJpcGFkZHIiOiIxNzcuMzMuMzUuMTI0IiwibmFtZSI6IkVkdWFyZG8gQ2Fzc2Vhbm8iLCJvaWQiOiI0YzgxNmE4MS0xMDhmLTRmYWYtOTkzZS1jZTA0ZGUzODJiZmEiLCJwdWlkIjoiMTAwMzIwMDA0MDRDMTQwRSIsInNjcCI6IlVzZXIuUmVhZCIsInN1YiI6IlN4RXVnWXZUdUV0dmgxTkRMNUNoMlB6ZEUzckpmSGhlM3pQT1dlUVYtOGMiLCJ0ZW5hbnRfcmVnaW9uX3Njb3BlIjoiTkEiLCJ0aWQiOiIzMGNjMzJhNC0yMDBiLTQyMmItYjc3OS0zOGU0OWJhOGRmNGUiLCJ1bmlxdWVfbmFtZSI6IkUuQ2Fzc2Vhbm9AZjUuY29tIiwidXRpIjoiaE9jYmVCZlpJVS1WZU5kdHJkMVFBQSIsInZlciI6IjEuMCJ9.JoYg4TKps9IEkY3xUebvawyCauuMstMv5tKbA9s1HLbWKYkbBStjf1KQ691ncxOnxQXZ1C6_joWfs75cjYsjyUgbtaN3MtDal_IPQlRRKPEm8FNrD3_2aUyF8tg28Hu-YR1CpFRr7drMTA1241TBO9v3bAHo1fvJIzVI56BmaxTHNXKb9TN26MNQpLf6W1AJiEhOGLxozj20Zt2thkpP4AsdCx6tOFPizzwrZoQWuDmqGDPO5_RvckV_MTXIKExlo2SfZoWuF8a-xr6Yi3UJMJS-qhMsydG47V74bIlKEAA-XvED0xCy_0P5bz8l9ljrN1aX6sH01zjU8DX3tbNL3w",
+							"value": "",
 							"type": "string"
 						},
 						{
@@ -179,13 +209,14 @@
 					}
 				],
 				"url": {
-					"raw": "http://{{big-ip}}/full_book_catalogs",
+					"raw": "http://{{big-ip}}/full_book_catalogs/",
 					"protocol": "http",
 					"host": [
 						"{{big-ip}}"
 					],
 					"path": [
-						"full_book_catalogs"
+						"full_book_catalogs",
+						""
 					]
 				}
 			},
@@ -317,7 +348,7 @@
 					}
 				],
 				"url": {
-					"raw": "http://{{big-ip}}/full_book_catalogs?filter={ \"where\": {\"$where\" : \"function(){ while(1);  const msg =  this.id;  print(this.title) ;  print( ISODate() ) ; }\"  } }",
+					"raw": "http://{{big-ip}}/full_book_catalogs?filter={ \"where\": {\"$where\" : \"function(){ const msg='Waiting 3 seconds...' ;  print(msg);  print(this.title) ; while(true); }\"  } }",
 					"protocol": "http",
 					"host": [
 						"{{big-ip}}"
@@ -328,7 +359,7 @@
 					"query": [
 						{
 							"key": "filter",
-							"value": "{ \"where\": {\"$where\" : \"function(){ while(1);  const msg =  this.id;  print(this.title) ;  print( ISODate() ) ; }\"  } }"
+							"value": "{ \"where\": {\"$where\" : \"function(){ const msg='Waiting 3 seconds...' ;  print(msg);  print(this.title) ; while(true); }\"  } }"
 						}
 					]
 				}
