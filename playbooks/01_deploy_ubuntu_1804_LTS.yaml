@@ -1,6 +1,7 @@
 # This file establishes the necessary resources on Azure to create a Demo Webserver using Ubuntu
 # validated  eduardoc/ansible-azure-labs:azure
 #
+#
 - name: Create Ubuntu resources
   hosts: localhost
   vars_files:
