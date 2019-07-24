@@ -23,6 +23,3 @@ BIGIP_ADDRESS: 10.1.20.245
 ADMINUSERNAME: azureuser
 ADMINPASSWORD: f5DEMOs4uLATAM
 BIGIP_LICENSE: <BIGIP_LICENSE>
-
-
-deprecation_warnings=False in ansible.cfg
