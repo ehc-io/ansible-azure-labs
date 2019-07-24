@@ -1,5 +1,6 @@
 #!/bin/bash
 #
+#
 RED='\033[0;31m'
 GREEN='\033[0;32m'
 BLUE='\033[0;34m'
@@ -7,6 +8,14 @@ NC='\033[0m' # No Color
 #
 #
 SECONDS=0
+#
+# update IP ACL for management
+#
+echo -e "Getting public IP..."
+MYIP=`curl -s http://ip.42.pl/raw`
+echo -e "\n${BLUE}TIME:: $MYIP"
+#
+sed 's/<MYIP>/'"$MYIP"'/g' /root/azure/config.yml
 #
 echo -e "\n${BLUE}TIME:: $(date +"%H:%M")${NC}"
 ansible-playbook ./01_deploy_ubuntu_1804_LTS.yaml
