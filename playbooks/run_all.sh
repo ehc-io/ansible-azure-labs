@@ -11,12 +11,23 @@ SECONDS=0
 #
 # update IP ACL for management
 #
+echo '
+ __      __  _____  .______________ __________.____       _________ 
+/  \    /  \/  _  \ |   \__    ___/ \______   \    |     /   _____/  
+\   \/\/   /  /_\  \|   | |    |     |     ___/    |     \_____  \  
+ \        /    |    \   | |    |     |    |   |    |___  /        \ 
+  \__/\  /\____|__  /___| |____|     |____|   |_______ \/_______  / 
+       \/         \/                                  \/        \/ 
+
+'
+#
+
 echo -e "Getting public IP..."
 MYIP=`curl -s http://ip.42.pl/raw`
 echo 
 echo $MYIP
 #
-sed 's/<MYIP>/'"$MYIP"'/g' /root/azure/config.yml
+sed -i 's/<MYIP>/'"$MYIP"'/g' /root/azure/config.yml
 #
 echo -e "\n${BLUE}TIME:: $(date +"%H:%M")${NC}"
 ansible-playbook ./01_deploy_ubuntu_1804_LTS.yaml
