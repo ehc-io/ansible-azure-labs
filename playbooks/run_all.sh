@@ -13,7 +13,8 @@ SECONDS=0
 #
 echo -e "Getting public IP..."
 MYIP=`curl -s http://ip.42.pl/raw`
-echo -e "\n${BLUE}TIME:: $MYIP"
+echo 
+echo $MYIP
 #
 sed 's/<MYIP>/'"$MYIP"'/g' /root/azure/config.yml
 #
