@@ -1,0 +1,23 @@
+---
+# Playbook: license.yaml
+# validated  eduardoc/f5-ansible-container:latest
+- name: License BIGIP
+  connection: local
+  hosts: azure-resource-group
+  vars_files:
+    - ./config.yml
+  vars:
+    provider:
+      server: "{{ ansible_host }}"
+      user: "{{ ADMINUSERNAME }}"
+      password: "{{ ADMINPASSWORD }}"
+      server_port: 8443
+      validate_certs: "false"
+
+  tasks:
+      - name: License BIG-IP using a key
+        bigip_device_license:
+          provider: "{{ provider }}"
+          license_key: "FVQUF-YMFJC-BNQVW-EUPCW-IKGTWGE"
+          accept_eula: yes
+          validate_certs: no
